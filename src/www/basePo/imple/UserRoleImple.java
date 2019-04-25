@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import www.basePo.dao.UserRoleDao;
 import www.basePo.po.UserRole;
@@ -100,6 +102,30 @@ public class UserRoleImple implements UserRoleDao{
 		}
 		
 		return user;
+	}
+
+	@Override
+	public List<UserRole> selectAll() {
+		List<UserRole> userlist= new ArrayList<UserRole>();
+		Connection conn = ConnDB.getConnection();
+		String sql = "select * from role_info ";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next())
+			{
+				UserRole user = new UserRole();
+				user.setUseRoleId(rs.getInt(1));
+				user.setRoleName(rs.getString(2));
+				user.setStuRang(rs.getInt(3));
+				user.setRoleExplain(rs.getString(4));
+				userlist.add(user);
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return userlist;
 	}
 
 

@@ -1,5 +1,6 @@
 package www.basePo.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import www.basePo.po.UserInfo;
@@ -20,4 +21,15 @@ public interface UserInfoDao {
 	public UserInfo selectUser(UserInfo userInfo);
 	
 	public List<UserInfo> selectAll();
+	/**
+	 * 用于信息的导入
+	 * @param rowCode
+	 * @return
+	 */
+	public void insertUserInfo(ArrayList<ArrayList<String>> arrayInsert);
+	
+	/**
+	 * 用于界面分页时json数据
+	 */
+	public List<UserInfo> selectPageCode(int pageSize,int rowoffset);
 }

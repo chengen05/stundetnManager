@@ -10,7 +10,7 @@ import lombok.Data;
 
 public class SystemOperate {
 	private int systemId;
-	private String linkName;
+	private String name;
 	private String linkUrl;
 	private int menu;
 	private String icon;

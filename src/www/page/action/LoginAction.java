@@ -113,7 +113,7 @@ public class LoginAction extends ActionSupport{
 					int parentnode = system.getSystemId();
 					HrefUrlItem	hrefUrlItem = new HrefUrlItem();
 					hrefUrlItem.setSystemId(system.getSystemId());
-					hrefUrlItem.setLinkName(system.getLinkName());
+					hrefUrlItem.setLinkName(system.getName());
 					hrefUrlItem.setMenu(system.getMenu());
 					hrefUrlItem.setIcon(system.getIcon());
 					hrefUrlItem.setSystemSort(system.getSystemSort());

@@ -33,7 +33,7 @@ public class HrefUrlItemImple implements HrefUrlItemDao{
 			{
 				SystemOperate sys = new SystemOperate();
 				sys.setSystemId(rs.getInt(1));
-				sys.setLinkName(rs.getString(2));
+				sys.setName(rs.getString(2));
 				sys.setLinkUrl(rs.getString(3));
 				sys.setMenu(rs.getInt(4));
 				sys.setIcon(rs.getString(5));

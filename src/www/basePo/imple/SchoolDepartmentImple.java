@@ -43,16 +43,16 @@ public class SchoolDepartmentImple implements SchoolDepartmentDao{
 	public boolean updateSchoolDepart(SchoolDepartment schoolDepart) {
 		boolean judge = false;
 		Connection conn = ConnDB.getConnection();
-		String sql = "update school_department set  depart_type=?,depart_sort=?,"
+		String sql = "update school_department set  depart_type=?,"
 				+ "depart_linkman=?,work_address=?,linkman_tel=? where id =?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, schoolDepart.getDepartmentType());
-			pstmt.setInt(2, schoolDepart.getDepartmentSort());
-			pstmt.setString(3, schoolDepart.getDepartmentLinkman());
-			pstmt.setString(4, schoolDepart.getOfficeAddress());
-			pstmt.setString(6, schoolDepart.getPhoneNumber());
-			pstmt.setInt(6, schoolDepart.getSchoolDepartId());
+		
+			pstmt.setString(2, schoolDepart.getDepartmentLinkman());
+			pstmt.setString(3, schoolDepart.getOfficeAddress());
+			pstmt.setString(4, schoolDepart.getPhoneNumber());
+			pstmt.setInt(5, schoolDepart.getSchoolDepartId());
 			int value = pstmt.executeUpdate();
 			if(value > 0)
 			{
@@ -111,5 +111,31 @@ public class SchoolDepartmentImple implements SchoolDepartmentDao{
 		}
 		return listAll;
 	}
-
+	//分页查询数据 pageSize:每页数量 offset:当前页
+	public List<SchoolDepartment> selectfind(int pageSize,int offset) {
+		List<SchoolDepartment> listAll = new ArrayList<SchoolDepartment>();
+		Connection conn = ConnDB.getConnection();
+		String sql = "select * from school_department limit ?,?";
+		try {
+			PreparedStatement pstmt= conn.prepareStatement(sql);
+			pstmt.setInt(1,offset);
+			pstmt.setInt(2, pageSize);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next())
+			{
+				SchoolDepartment schoolDepartment = new SchoolDepartment();
+				schoolDepartment.setSchoolDepartId(rs.getInt(1));
+				schoolDepartment.setDepartmentName(rs.getString(2));
+				schoolDepartment.setDepartmentType(rs.getInt(3));
+				schoolDepartment.setDepartmentSort(rs.getInt(4));
+				schoolDepartment.setDepartmentLinkman(rs.getString(5));
+				schoolDepartment.setOfficeAddress(rs.getString(6));
+				schoolDepartment.setPhoneNumber(rs.getString(7));
+				listAll.add(schoolDepartment);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listAll;
+	}
 }

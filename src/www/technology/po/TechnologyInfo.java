@@ -13,4 +13,5 @@ public class TechnologyInfo {
 	private String technologyType;
 	private String grade;
 	private String description;
+	private int status;
 }

@@ -12,23 +12,89 @@
     	<!-- 显示登录界面 -->
         <action name="login" class="www.page.action.LoginAction" method="loginPage" >
         	<result name="login">/WEB-INF/login.jsp</result>
+        	
         </action>  
         <!-- 登录操作 -->
         <action name="loginJudge" class="www.page.action.LoginAction" method="loginDo">
         	<result name="faileLogin">/WEB-INF/login.jsp</result>
         	<result name="successLogin">/WEB-INF/index.jsp</result>
+       
         </action>  
         <!-- 科研情况 -->
-        <action name="technologyResearch" class="www.page.action.TechnologyAction" method="">
+        <action name="technologyResearch" class="www.page.action.TechnologyAction" method="123">
         	<result name=""></result>
         </action>
+        
         <!-- 学校部门管理 -->
-        <action name="schooldepartment" class="www.page.action.SchoolDepartmentAction" method="showSchoolDepartInfo">
+        <action name="schooldepartmentCode" class="www.page.action.SchoolDepartmentAction" method="showSchoolDepartInfo">
         	<result name="success">/WEB-INF/schooldepartShowPage.jsp</result>
         </action>
+        	<!-- 添加部门 -->
+        	<action name="addSchoolDepart" class="www.page.action.SchoolDepartmentAction" method="addSchoolDepart">
+        		<result name="success" type="chain">schooldepartmentCode</result>
+        	</action>
+        	<!-- 修改部门 -->
+        	<action name="upSchoolDepart" class="www.page.action.SchoolDepartmentAction" method="upSchoolDepart">
+        		<result name="success" type="chain">schooldepartmentCode</result>
+        	</action>
+        	<!-- 删除部门 -->
+        	<action name="delSchoolDepart" class="www.page.action.SchoolDepartmentAction" method="delSchoolDepart">
+        		<result name="success" type="chain">schooldepartmentCode</result>
+        	</action>
+ 
         <!-- 用户信息管理 -->
-        <action name="userinfo" class="www.page.action.UserInfoAction" method="showUserInfos">
+        <action name="userinfo" class="www.page.action.UserInfoAction" method="showUserInfo">
         	<result name="success">/WEB-INF/userinfo.jsp</result>
         </action>
+        	<!-- 插入用户信息 -->
+        	<action name="insertuserinfo" class="www.page.action.UserInfoAction" method="insertUserInfo">
+        		<result name="success" type="chain">userinfo</result>
+        	</action>
+        	<!-- 修改用户信息 -->
+        	<action name="updateuserinfo" class="www.page.action.UserInfoAction" method="updateUserInfo">
+        		<result name="success" type="chain">userinfo</result>
+        	</action>
+        	<!-- 删除用户信息 -->
+        	<action name="deluserinfo" class="www.page.action.UserInfoAction" method="delUserInfo">
+        		<result name="success" type="chain">userinfo</result>
+        	</action>
+        <!-- 退出系统 -->
+        <action name="exit" class="www.page.action.Exit" method="exitdo">
+        	<result name="success" type="chain">login.action</result>
+       </action>
+       
+       
+        <!-- 权限管理 -->
+        <action name="roleinfo" class="www.page.action.RoleAction" method="showrole">
+        	 <result name="show">/WEB-INF/roleshowpage.jsp</result> 
+        	<result name="123">/WEB-INF/rolepage.jsp</result>
+        </action>
+        
+        
+        <!-- 退出 -->
+        <action name="test" class="www.page.action.TestAction" method="testdo">
+        	<result name="success">/WEB-INF/InsIndex.jsp</result>
+        </action>
+    </package>
+    
+    <package name="jsoncode" extends="json-default">
+    <!-- 页面请求权限数据使用 -->
+    	<action name="roleinfojson" class="www.page.action.RoleActionJson" method="execute">
+        	<result type="json">
+        		<param name="root">listcode</param>
+        	</result>
+        </action>
+       <!-- 学院部门数据使用 -->
+       <action name="shooldepartmentjson" class="www.page.action.SchoolDepartJson" method="execute">
+       		<result type="json">
+       			<param name="root">schoolJson</param>
+       		</result>
+       </action>
+       <!-- 显示用户信息分页使用 -->
+       <action name="userinfopagejson" class="www.page.action.UserInfoJson" method="execute">
+       		<result type="json">
+       			<param name="root">userinfoJson</param>
+       		</result>
+       </action>
     </package>
 </struts>

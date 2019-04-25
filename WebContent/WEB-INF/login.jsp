@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
+	<title>登录|学工助手</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -34,9 +34,9 @@
               <div class="info d-flex align-items-center">
                 <div class="content">
                   <div class="logo">
-                    <h1>Dashboard</h1>
+                    <h1>学工助手</h1>
                   </div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                  <p>欢迎使用学工助手，请登录我们</p>
                 </div>
               </div>
             </div>
@@ -55,7 +55,7 @@
                       <label for="login-password" class="label-material">Password</label>
                     </div><input type="submit" class="btn btn-primary" value="login">
                     <!-- This should be submit button but I replaced it with <a> for demo purposes-->
-                  </s:form><a href="#" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><a href="register.html" class="signup">Signup</a>
+                  </s:form>
                 </div>
               </div>
             </div>

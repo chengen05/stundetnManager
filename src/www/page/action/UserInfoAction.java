@@ -1,25 +1,53 @@
 package www.page.action;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import lombok.Data;
 import www.basePo.dao.UserInfoDao;
+import www.basePo.dao.UserRoleNodeDao;
 import www.basePo.imple.UserInfoImple;
+import www.basePo.imple.UserRoleNodeImple;
 import www.basePo.po.UserInfo;
+import www.basePo.po.UserRoleNode;
 
 @Data
 public class UserInfoAction {
-	private List<UserInfo> userInfoList;
+	private List<UserRoleNode> roleinfo;
+	private UserInfo userInfo;
+	private int userid;
 	
-	public String showUserInfos()
+	public String showUserInfo()
 	{
-		userInfoList = new ArrayList<UserInfo>();
+		UserRoleNodeDao userRole = new UserRoleNodeImple();
+		this.roleinfo = userRole.selectAll();
+		return "success";
+	}
+	/**
+	 * 插入一条数据
+	 */
+	public String insertUserInfo()
+	{
 		UserInfoDao userdo = new UserInfoImple();
-		this.userInfoList = userdo.selectAll();
-		for (UserInfo userInfo : userInfoList) {
-			System.out.println(userInfo.getAccount());
-		}
+		userdo.insertUserCode(userInfo);
+		return "success";
+	}
+	/**
+	 * 修改数据
+	 */
+	public String updateUserInfo()
+	{
+		UserInfoDao userdo = new UserInfoImple();
+		userdo.updateUserCode(userInfo);
+		return "success";
+	}
+	/**
+	 * 删除数据
+	 */
+	public String delUserInfo()
+	{
+		UserInfoDao userdo = new UserInfoImple();
+		userdo.delUserCode(userid);
 		return "success";
 	}
 }
